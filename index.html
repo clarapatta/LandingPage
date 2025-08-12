@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>TechForward 2025</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container header__container">
+            <div class="header__logo-container">
+                <a href="#hero">
+                    <img src="img/Logo.jpg" alt="TechForward 2025 Logo" class="header__logo">
+                </a>
+            </div>
+
+            <div class="header-content">
+                <h1 class="header__title">TechForward 2025: O Futuro é Agora</h1>
+                <nav class="nav">
+                    <ul class="nav__list">
+                        <li><a href="#hero" class="nav__link">Home</a></li>
+                        <li><a href="#agenda" class="nav__link">Agenda</a></li>
+                        <li><a href="#palestrantes" class="nav__link">Palestrantes</a></li>
+                        <li><a href="#inscricao" class="nav__link">Inscrição</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero">
+            <h1 class="hero__title">
+                Conecte-se com os <span class="hero__highlight">maiores inovadores</span> da tecnologia e <span
+                    class="hero__highlight">transforme o futuro.</span>
+            </h1>
+        </section>
+
+        <!-- AGENDA SECTION -->
+        <section id="agenda" class="section agenda">
+            <div class="container">
+                <h2 class="section-title">Agenda do Evento</h2>
+                <ul class="agenda__list">
+                    <li class="agenda__item"><span class="agenda__time">09:00</span> IA Generativa e o Futuro do
+                        Trabalho</li>
+                    <li class="agenda__item"><span class="agenda__time">11:00</span> Web3 & Blockchain: A Próxima
+                        Fronteira Digital</li>
+                    <li class="agenda__item"><span class="agenda__time">13:00</span> Cibersegurança</li>
+                    <li class="agenda__item"><span class="agenda__time">14:00</span> Computação Quântica: Além dos
+                        Limites Clássicos</li>
+                    <li class="agenda__item"><span class="agenda__time">16:00</span> Comunicação e Segurança de Dados
+                    </li>
+                    <li class="agenda__item"><span class="agenda__time">18:00</span> Algoritmos e Big Data: A Nova Era
+                        da Precisão</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SPEAKERS SECTION -->
+        <section id="palestrantes" class="section speakers">
+            <div class="container">
+                <h2 class="section-title">Palestrantes</h2>
+                <ul class="speakers__grid">
+                    <li class="speaker-card">
+                        <img src="img/Ada.jpg" alt="Foto da palestrante Ada Lovelace" class="speaker-card__img">
+                        <h3>Ada Lovelace</h3>
+                        <span class="speaker-card__topic">IA Generativa</span>
+                    </li>
+                    <li class="speaker-card">
+                        <img src="img/Alan.jpg" alt="Foto do palestrante Alan Turing" class="speaker-card__img">
+                        <h3>Alan Turing</h3>
+                        <span class="speaker-card__topic">Web3 & Blockchain</span>
+                    </li>
+                    <li class="speaker-card">
+                        <img src="img/Grace.jpg" alt="Foto da palestrante Grace Hopper" class="speaker-card__img">
+                        <h3>Grace Hopper</h3>
+                        <span class="speaker-card__topic">Computação Quântica</span>
+                    </li>
+                    <li class="speaker-card">
+                        <img src="img/Xaden.jpg" alt="Foto do palestrante Xaden Riorson" class="speaker-card__img">
+                        <h3>Xaden Riorson</h3>
+                        <span class="speaker-card__topic">Cibersegurança</span>
+                    </li>
+                    <li class="speaker-card">
+                        <img src="img/Hendy.jpg" alt="Foto da palestrante Hedy Lamarr" class="speaker-card__img">
+                        <h3>Hedy Lamarr</h3>
+                        <span class="speaker-card__topic">Comunicação e Segurança de Dados</span>
+                    </li>
+                    <li class="speaker-card">
+                        <img src="img/Kath.jpg" alt="Foto da palestrante Katherine Johnson" class="speaker-card__img">
+                        <h3>Katherine Johnson</h3>
+                        <span class="speaker-card__topic">Algoritmos e Big Data</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- REGISTRATION SECTION -->
+        <section id="inscricao" class="section registration">
+            <div class="container">
+                <h2 class="section-title">Inscrição</h2>
+                <p class="registration__description">Garanta seu lugar no TechForward 2025 e faça parte da revolução!
+                </p>
+                <form action="#" method="post" class="form">
+                    <div class="form__group">
+                        <label for="name" class="form__label">Nome:</label>
+                        <input type="text" id="name" name="name" class="form__input" required
+                            placeholder="Seu nome completo">
+                    </div>
+                    <div class="form__group">
+                        <label for="email" class="form__label">E-mail:</label>
+                        <input type="email" id="email" name="email" class="form__input" required
+                            placeholder="seu.email@exemplo.com">
+                    </div>
+                    <button type="submit" class="btn">Garanta sua Vaga!</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 TechForward. Todos os direitos reservados.</p>
+            <p>Para mais informações, entre em contato conosco.</p>
+            <p>Contato: <a href="mailto:contato@techforward.com" class="footer__link">contato@techforward.com</a></p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
