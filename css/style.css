@@ -231,6 +231,7 @@ main {
     align-items: center;
     justify-content: center;
     min-height: 40vh;
+    flex-direction: column;
 }
 
 .hero::before {
@@ -336,8 +337,10 @@ main {
     text-align: center;
     transition: var(--transition-fast);
     animation: float 6s ease-in-out infinite alternate;
-    position: relative; /* <-- ADICIONADO: Essencial para a borda funcionar */
-    overflow: hidden; /* <-- ADICIONADO: Garante que nada vaze dos cantos arredondados */
+    position: relative;
+    /* <-- ADICIONADO: Essencial para a borda funcionar */
+    overflow: hidden;
+    /* <-- ADICIONADO: Garante que nada vaze dos cantos arredondados */
 }
 
 .speaker-card:hover {
@@ -351,17 +354,23 @@ main {
 .speaker-card::before {
     content: '';
     position: absolute;
-    z-index: -1; /* Coloca o gradiente atrás do conteúdo do card */
-    inset: -2px; /* Define a espessura da borda (2px) em volta do card */
+    z-index: -1;
+    /* Coloca o gradiente atrás do conteúdo do card */
+    inset: -2px;
+    /* Define a espessura da borda (2px) em volta do card */
     background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
-    border-radius: 22px; /* Raio do card (20px) + espessura da borda (2px) */
-    opacity: 0; /* Começa invisível */
+    border-radius: 22px;
+    /* Raio do card (20px) + espessura da borda (2px) */
+    opacity: 0;
+    /* Começa invisível */
     transition: opacity 0.3s ease;
 }
 
 .speaker-card:hover::before {
-    opacity: 1; /* Fica visível no hover */
+    opacity: 1;
+    /* Fica visível no hover */
 }
+
 /* ===== FIM DO NOVO CÓDIGO PARA BORDA GRADIENTE ARREDONDADA ===== */
 
 
@@ -478,22 +487,28 @@ main {
         gap: 1.5rem;
         padding: 0 2rem;
     }
+
     .header__title {
         font-size: 1.4rem;
         text-align: center;
     }
+
     .nav__list {
         gap: 0.5rem;
     }
+
     .nav__link {
         padding: 0.5rem;
     }
+
     .hero__text {
         font-size: 1.2rem;
     }
+
     .section-title {
         font-size: 2rem;
     }
+
     .agenda,
     .speakers,
     .registration {
@@ -511,37 +526,320 @@ main {
         padding: 0 1rem;
         gap: 1rem;
     }
+
     .header__title {
         font-size: 1.2rem;
     }
+
     .nav__list {
         flex-wrap: wrap;
         justify-content: center;
         gap: 0.25rem 0.5rem;
     }
+
     .nav__link {
         font-size: 0.9rem;
         padding: 0.4rem 0.8rem;
     }
+
     .agenda,
     .speakers,
     .registration {
         margin: 1rem 0.5rem;
         padding: 1.5rem;
     }
+
     .section-title {
         font-size: 1.8rem;
     }
+
     .hero__title {
         font-size: 1.9rem;
     }
+
     .speakers__grid {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 2.5rem;
     }
+
     .speaker-card {
         width: 100%;
     }
+}
+
+/* =============================================
+   9. ESTILOS DO COUNTDOWN FIXO
+   ============================================= */
+
+.countdown {
+    margin-top: 3rem;
+    animation: fadeInUp 1s ease-out 1s both;
+}
+
+.countdown h2 {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.countdown p {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.countdown-display {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    /* Espaçamento entre as unidades */
+    background: rgba(10, 10, 10, 0.5);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 122, 255, 0.3);
+    backdrop-filter: blur(5px);
+    width: fit-content;
+    margin: 0 auto;
+    /* Centraliza o container */
+}
+
+.time-unit {
+    text-align: center;
+}
+
+.time-unit span {
+    display: block;
+    font-size: 3rem;
+    /* Tamanho dos números */
+    font-weight: 700;
+    color: var(--color-text);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 0 10px rgba(0, 198, 255, 0.4));
+    line-height: 1;
+}
+
+.time-unit label {
+    display: block;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+}
+
+/* Responsividade para o contador */
+@media (max-width: 480px) {
+    .countdown-display {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+
+    .time-unit span {
+        font-size: 2.5rem;
+    }
+}
+
+/* =============================================
+   10. ESTILOS DO FORMULÁRIO DE INSCRIÇÃO (VALIDAÇÃO)
+   ============================================= */
+
+.error-message {
+    color: #FF4747;
+    /* Um vermelho claro para o erro */
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    min-height: 1.2rem;
+    /* Garante que o layout não "pule" quando a mensagem aparece */
+    text-shadow: 0 0 5px rgba(255, 71, 71, 0.5);
+}
+
+/* Estilos para o grupo do checkbox */
+.form__group--checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+    margin-bottom: 0;
+    /* Ajusta o espaçamento, já que o erro tem seu próprio espaço */
+}
+
+/* Remove o estilo padrão de 'width: 100%' do nosso checkbox */
+.form__input--checkbox {
+    width: auto;
+    accent-color: var(--color-primary);
+    /* Moderno, estiliza a cor do 'check' */
+}
+
+.form__label--checkbox {
+    font-weight: normal;
+    font-size: 0.9rem;
+}
+
+.form__label--checkbox a {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+.form__label--checkbox a:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para o botão quando estiver desabilitado */
+.btn:disabled {
+    background: #555;
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* =============================================
+   11. ESTILOS DA PREVISÃO DO TEMPO
+   ============================================= */
+
+.weather-forecast {
+    text-align: center;
+}
+
+/* O container principal que será exibido após o carregamento */
+.weather-content-full {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--color-background-card);
+    border-radius: 20px;
+    border: 1px solid rgba(0, 122, 255, 0.3);
+    backdrop-filter: blur(10px);
+    padding: 2rem 2.5rem;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* Esconde o container até que os dados cheguem */
+.weather-content-full.hidden {
+    display: none;
+}
+
+/* Mensagem de status (Carregando... / Erro) */
+.weather-status {
+    color: var(--color-secondary);
+    font-size: 1.2rem;
+    padding: 2rem 0;
+}
+
+/* Seção superior com nome da cidade, temperatura e ícone */
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 122, 255, 0.2);
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#weather-city-name {
+    font-size: 2.5rem;
+    color: var(--color-text);
+    margin: 0;
+    text-align: left;
+}
+
+#weather-description {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    text-transform: capitalize;
+    margin: 0;
+    text-align: left;
+}
+
+.weather-temp-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#weather-main-icon {
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0 0 10px rgba(0, 198, 255, 0.3));
+}
+
+#weather-main-temp {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Grid com todos os outros detalhes */
+.weather-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+}
+
+.weather-detail-item {
+    background: rgba(10, 10, 10, 0.4);
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.detail-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+}
+
+.detail-value {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* Responsividade para o grid */
+@media (max-width: 500px) {
+    .weather-main {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    #weather-city-name, #weather-description {
+        text-align: center;
+    }
+    .weather-details-grid {
+        grid-template-columns: 1fr 1fr; /* Força duas colunas em telas menores */
+    }
+}
+
+/* =============================================
+   12. ESTILOS DA MENSAGEM DE SUCESSO DO FORMULÁRIO
+   ============================================= */
+
+.success-title {
+    font-size: 2.2rem; /* Um pouco menor para diferenciar do título principal */
+    color: #20c997; /* Um verde-água vibrante para indicar sucesso */
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(32, 201, 151, 0.5); /* Sombra que combina com a nova cor */
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.success-message {
+    font-size: 1.1rem;
+    color: var(--color-text); /* Cor de texto padrão, mais sóbria que o azul anterior */
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    line-height: 1.7;
+    animation: fadeInUp 0.5s ease-out 0.2s; /* Animação com um pequeno atraso */
 }
