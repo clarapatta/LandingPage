@@ -100,6 +100,7 @@ img {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1rem; /* Adicionado padding para segurança em telas menores */
 }
 
 .btn {
@@ -163,7 +164,6 @@ img {
 .header__container {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 2rem;
 }
 
@@ -173,52 +173,29 @@ img {
     transition: transform 0.3s ease;
 }
 
-.header__logo-container {
-    display: flex;
-    justify-content: start;
-}
-
 .header__logo:hover {
     transform: scale(1.1);
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .header__title {
     color: var(--color-primary);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-shadow: var(--shadow-glow-primary);
-}
-
-.nav__list {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-}
-
-.nav__link {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    transition: var(--transition-fast);
-    position: relative;
-}
-
-.nav__link:hover,
-.nav__link:focus-visible {
-    background: rgba(0, 122, 255, 0.2);
-    color: var(--color-primary);
-    transform: translateY(-2px);
-    outline: none;
 }
 
 /* =============================================
    5. SEÇÕES PRINCIPAIS
    ============================================= */
 main {
-    margin-top: 150px;
-    /* Ajuste conforme a altura do header */
+    /* Padding-top agora é controlado dinamicamente via JS (scriptLayout.js) */
 }
 
 /* Hero Section */
@@ -248,28 +225,20 @@ main {
 
 .hero__title {
     font-size: 2.5rem;
-    /* Aumenta o tamanho para maior impacto */
     font-weight: 700;
     text-align: center;
     max-width: 900px;
     line-height: 1.3;
     color: #E0E0E0;
-    /* Cor base para o texto não destacado */
     animation: fadeInUp 1s ease-out 0.5s both;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-    /* Sombra para legibilidade */
 }
 
 .hero__highlight {
-    /* A mágica do gradiente acontece aqui */
     background: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
     -webkit-background-clip: text;
-    /* Necessário para navegadores WebKit (Chrome, Safari) */
     background-clip: text;
     color: transparent;
-    /* Deixa o texto transparente para o fundo (gradiente) aparecer */
-
-    /* Um brilho sutil que funciona bem com gradientes */
     filter: drop-shadow(0 0 15px rgba(0, 198, 255, 0.4));
 }
 
@@ -338,41 +307,27 @@ main {
     transition: var(--transition-fast);
     animation: float 6s ease-in-out infinite alternate;
     position: relative;
-    /* <-- ADICIONADO: Essencial para a borda funcionar */
     overflow: hidden;
-    /* <-- ADICIONADO: Garante que nada vaze dos cantos arredondados */
 }
 
 .speaker-card:hover {
     transform: translateY(-10px);
 }
 
-/* ================================================================ */
-/* ===== NOVO CÓDIGO PARA BORDA GRADIENTE ARREDONDADA (INÍCIO) ===== */
-/* ================================================================ */
-
 .speaker-card::before {
     content: '';
     position: absolute;
     z-index: -1;
-    /* Coloca o gradiente atrás do conteúdo do card */
     inset: -2px;
-    /* Define a espessura da borda (2px) em volta do card */
     background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
     border-radius: 22px;
-    /* Raio do card (20px) + espessura da borda (2px) */
     opacity: 0;
-    /* Começa invisível */
     transition: opacity 0.3s ease;
 }
 
 .speaker-card:hover::before {
     opacity: 1;
-    /* Fica visível no hover */
 }
-
-/* ===== FIM DO NOVO CÓDIGO PARA BORDA GRADIENTE ARREDONDADA ===== */
-
 
 .speaker-card__img {
     width: 120px;
@@ -482,26 +437,7 @@ main {
    ============================================= */
 
 @media (max-width: 768px) {
-    .header__container {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 0 2rem;
-    }
-
     .header__title {
-        font-size: 1.4rem;
-        text-align: center;
-    }
-
-    .nav__list {
-        gap: 0.5rem;
-    }
-
-    .nav__link {
-        padding: 0.5rem;
-    }
-
-    .hero__text {
         font-size: 1.2rem;
     }
 
@@ -517,38 +453,7 @@ main {
     }
 }
 
-/* =============================================
-   8. AJUSTES FINOS PARA TELAS MUITO PEQUENAS
-   ============================================= */
-
-@media (max-width: 375px) {
-    .header__container {
-        padding: 0 1rem;
-        gap: 1rem;
-    }
-
-    .header__title {
-        font-size: 1.2rem;
-    }
-
-    .nav__list {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.25rem 0.5rem;
-    }
-
-    .nav__link {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-    }
-
-    .agenda,
-    .speakers,
-    .registration {
-        margin: 1rem 0.5rem;
-        padding: 1.5rem;
-    }
-
+@media (max-width: 425px) {
     .section-title {
         font-size: 1.8rem;
     }
@@ -570,31 +475,17 @@ main {
 }
 
 /* =============================================
-   9. ESTILOS DO COUNTDOWN FIXO
+   8. ESTILOS DO COUNTDOWN FIXO
    ============================================= */
-
 .countdown {
     margin-top: 3rem;
     animation: fadeInUp 1s ease-out 1s both;
-}
-
-.countdown h2 {
-    font-size: 1.5rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.countdown p {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    color: rgba(255, 255, 255, 0.8);
 }
 
 .countdown-display {
     display: flex;
     justify-content: center;
     gap: 1.5rem;
-    /* Espaçamento entre as unidades */
     background: rgba(10, 10, 10, 0.5);
     padding: 2rem;
     border-radius: 20px;
@@ -602,7 +493,6 @@ main {
     backdrop-filter: blur(5px);
     width: fit-content;
     margin: 0 auto;
-    /* Centraliza o container */
 }
 
 .time-unit {
@@ -612,7 +502,6 @@ main {
 .time-unit span {
     display: block;
     font-size: 3rem;
-    /* Tamanho dos números */
     font-weight: 700;
     color: var(--color-text);
     background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
@@ -632,48 +521,46 @@ main {
 }
 
 /* Responsividade para o contador */
-@media (max-width: 480px) {
+@media (max-width: 425px) {
     .countdown-display {
-        flex-direction: column;
         gap: 1rem;
-        padding: 1.5rem;
+        padding: 1.2rem 0.8rem;
     }
 
     .time-unit span {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+    }
+
+    .time-unit label {
+        font-size: 0.65rem;
     }
 }
 
+
 /* =============================================
-   10. ESTILOS DO FORMULÁRIO DE INSCRIÇÃO (VALIDAÇÃO)
+   9. ESTILOS DO FORMULÁRIO DE INSCRIÇÃO (VALIDAÇÃO)
    ============================================= */
 
 .error-message {
     color: #FF4747;
-    /* Um vermelho claro para o erro */
     font-size: 0.85rem;
     font-weight: 500;
     margin-top: 0.5rem;
     min-height: 1.2rem;
-    /* Garante que o layout não "pule" quando a mensagem aparece */
     text-shadow: 0 0 5px rgba(255, 71, 71, 0.5);
 }
 
-/* Estilos para o grupo do checkbox */
 .form__group--checkbox {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     text-align: left;
     margin-bottom: 0;
-    /* Ajusta o espaçamento, já que o erro tem seu próprio espaço */
 }
 
-/* Remove o estilo padrão de 'width: 100%' do nosso checkbox */
 .form__input--checkbox {
     width: auto;
     accent-color: var(--color-primary);
-    /* Moderno, estiliza a cor do 'check' */
 }
 
 .form__label--checkbox {
@@ -690,7 +577,6 @@ main {
     text-decoration: underline;
 }
 
-/* Estilo para o botão quando estiver desabilitado */
 .btn:disabled {
     background: #555;
     opacity: 0.6;
@@ -699,15 +585,32 @@ main {
     transform: none;
 }
 
-/* =============================================
-   11. ESTILOS DA PREVISÃO DO TEMPO
-   ============================================= */
+.success-title {
+    font-size: 2.2rem;
+    color: #20c997;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px rgba(32, 201, 151, 0.5);
+    animation: fadeInUp 0.5s ease-out;
+}
 
+.success-message {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-align: center;
+    max-width: 450px;
+    margin: 0 auto;
+    line-height: 1.7;
+    animation: fadeInUp 0.5s ease-out 0.2s;
+}
+
+/* =============================================
+   10. ESTILOS DA PREVISÃO DO TEMPO
+   ============================================= */
 .weather-forecast {
     text-align: center;
 }
 
-/* O container principal que será exibido após o carregamento */
 .weather-content-full {
     max-width: 800px;
     margin: 0 auto;
@@ -719,19 +622,16 @@ main {
     animation: fadeInUp 0.5s ease-out;
 }
 
-/* Esconde o container até que os dados cheguem */
 .weather-content-full.hidden {
     display: none;
 }
 
-/* Mensagem de status (Carregando... / Erro) */
 .weather-status {
     color: var(--color-secondary);
     font-size: 1.2rem;
     padding: 2rem 0;
 }
 
-/* Seção superior com nome da cidade, temperatura e ícone */
 .weather-main {
     display: flex;
     justify-content: space-between;
@@ -777,7 +677,6 @@ main {
     color: transparent;
 }
 
-/* Grid com todos os outros detalhes */
 .weather-details-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -807,7 +706,6 @@ main {
     color: var(--color-text);
 }
 
-/* Responsividade para o grid */
 @media (max-width: 500px) {
     .weather-main {
         flex-direction: column;
@@ -817,29 +715,101 @@ main {
         text-align: center;
     }
     .weather-details-grid {
-        grid-template-columns: 1fr 1fr; /* Força duas colunas em telas menores */
+        grid-template-columns: 1fr 1fr;
     }
 }
 
 /* =============================================
-   12. ESTILOS DA MENSAGEM DE SUCESSO DO FORMULÁRIO
+   11. ESTILOS DO MENU HAMBÚRGUER E SIDEBAR
    ============================================= */
-
-.success-title {
-    font-size: 2.2rem; /* Um pouco menor para diferenciar do título principal */
-    color: #20c997; /* Um verde-água vibrante para indicar sucesso */
-    text-align: center;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 15px rgba(32, 201, 151, 0.5); /* Sombra que combina com a nova cor */
-    animation: fadeInUp 0.5s ease-out;
+.hamburger-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    z-index: 1010;
 }
 
-.success-message {
-    font-size: 1.1rem;
-    color: var(--color-text); /* Cor de texto padrão, mais sóbria que o azul anterior */
-    text-align: center;
-    max-width: 450px;
-    margin: 0 auto;
-    line-height: 1.7;
-    animation: fadeInUp 0.5s ease-out 0.2s; /* Animação com um pequeno atraso */
+.hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    z-index: 998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: var(--color-background-dark);
+    border-left: 1px solid var(--color-primary);
+    box-shadow: -5px 0 15px rgba(0, 122, 255, 0.1);
+    z-index: 999;
+    padding: 1.5rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.is-open {
+    transform: translateX(0);
+}
+
+.sidebar__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+}
+
+.sidebar-close-btn {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    font-size: 2.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.sidebar__nav-list {
+    list-style: none;
+}
+
+.sidebar__nav-link {
+    display: block;
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar__nav-link:hover {
+    color: var(--color-primary);
+    background-color: rgba(0, 122, 255, 0.1);
 }
